@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/quizListFragment">
+
+    <fragment
+        android:id="@+id/quizListFragment"
+        android:name="com.example.quizzy.ui.quizlist.QuizListFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_quiz_list">
+        <action
+            android:id="@+id/action_quizListFragment_to_quizDetailFragment"
+            app:destination="@id/quizDetailFragment" />
+        <action
+            android:id="@+id/action_quizListFragment_to_addQuizFragment"
+            app:destination="@id/addQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizDetailFragment"
+        android:name="com.example.quizzy.ui.QuizDetailFragment"
+        android:label="@string/quiz_detail_fragment_title"
+        tools:layout="@layout/fragment_quiz_detail">
+        <argument
+            android:name="quiz_id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quizDetailFragment_to_addQuizFragment"
+            app:destination="@id/addQuizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addQuizFragment"
+        android:name="com.example.quizzy.ui.AddQuizFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add_quiz">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="quiz_id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_addQuizFragment_to_itemQuizFragment"
+            app:destination="@id/quizListFragment"
+            app:popUpTo="@id/quizListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
