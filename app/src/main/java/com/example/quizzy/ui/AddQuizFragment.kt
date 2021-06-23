@@ -63,10 +63,9 @@ class AddQuizFragment : Fragment() {
      * Binds views with the passed in [quiz] information.
      */
     private fun bind(quiz: Quiz) {
-        val price = "%.2f".format(quiz.quizDescription)
         binding.apply {
             quizName.setText(quiz.quizName, TextView.BufferType.SPANNABLE)
-            quizDescription.setText(price, TextView.BufferType.SPANNABLE)
+            quizDescription.setText(quiz.quizDescription, TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateItem() }
         }
     }

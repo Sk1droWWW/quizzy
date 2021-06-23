@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.quizzy.*
 import com.example.quizzy.databinding.FragmentQuizListBinding
 import com.example.quizzy.viewmodels.QuizViewModel
@@ -43,7 +43,7 @@ class QuizListFragment : Fragment() {
                 QuizListFragmentDirections.actionQuizListFragmentToQuizDetailFragment(it.id)
             this.findNavController().navigate(action)
         }
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.layoutManager = GridLayoutManager(this.context, 2)
         binding.recyclerView.adapter = adapter
         // Attach an observer on the allItems list to update the UI automatically when the database
         // changes.
