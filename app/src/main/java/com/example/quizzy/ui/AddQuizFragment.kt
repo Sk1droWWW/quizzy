@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.quizzy.InventoryViewModel
-import com.example.quizzy.InventoryViewModelFactory
+import com.example.quizzy.viewmodels.QuizViewModel
+import com.example.quizzy.viewmodels.InventoryViewModelFactory
 import com.example.quizzy.QuizApplication
 import com.example.quizzy.database.Quiz
 import com.example.quizzy.databinding.FragmentAddQuizBinding
@@ -24,7 +24,7 @@ class AddQuizFragment : Fragment() {
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     // to share the ViewModel across fragments.
-    private val viewModel: InventoryViewModel by activityViewModels {
+    private val viewModel: QuizViewModel by activityViewModels {
         InventoryViewModelFactory(
             (activity?.application as QuizApplication).database
                 .itemDao()
@@ -55,8 +55,7 @@ class AddQuizFragment : Fragment() {
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
             binding.quizName.text.toString(),
-            binding.quizPrice.text.toString(),
-            binding.quizCount.text.toString(),
+            binding.quizDescription.text.toString(),
         )
     }
 
@@ -64,11 +63,10 @@ class AddQuizFragment : Fragment() {
      * Binds views with the passed in [quiz] information.
      */
     private fun bind(quiz: Quiz) {
-        val price = "%.2f".format(quiz.quizPrice)
+        val price = "%.2f".format(quiz.quizDescription)
         binding.apply {
             quizName.setText(quiz.quizName, TextView.BufferType.SPANNABLE)
-            quizPrice.setText(price, TextView.BufferType.SPANNABLE)
-            quizCount.setText(quiz.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
+            quizDescription.setText(price, TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateItem() }
         }
     }
@@ -78,10 +76,9 @@ class AddQuizFragment : Fragment() {
      */
     private fun addNewItem() {
         if (isEntryValid()) {
-            viewModel.addNewItem(
+            viewModel.addNewQuiz(
                 binding.quizName.text.toString(),
-                binding.quizPrice.text.toString(),
-                binding.quizCount.text.toString(),
+                binding.quizDescription.text.toString(),
             )
             val action = AddQuizFragmentDirections.actionAddQuizFragmentToItemQuizFragment()
             findNavController().navigate(action)
@@ -93,11 +90,10 @@ class AddQuizFragment : Fragment() {
      */
     private fun updateItem() {
         if (isEntryValid()) {
-            viewModel.updateItem(
+            viewModel.updateQuiz(
                 this.navigationArgs.quizId,
                 this.binding.quizName.text.toString(),
-                this.binding.quizPrice.text.toString(),
-                this.binding.quizCount.text.toString()
+                this.binding.quizDescription.text.toString(),
             )
             val action = AddQuizFragmentDirections.actionAddQuizFragmentToItemQuizFragment()
             findNavController().navigate(action)
@@ -115,7 +111,7 @@ class AddQuizFragment : Fragment() {
 
         val id = navigationArgs.quizId
         if (id > 0) {
-            viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
+            viewModel.retrieveQuiz(id).observe(this.viewLifecycleOwner) { selectedItem ->
                 quiz = selectedItem
                 bind(quiz)
             }
@@ -134,7 +130,8 @@ class AddQuizFragment : Fragment() {
         // Hide keyboard.
         val inputMethodManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as
                 InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
+        inputMethodManager
+            .hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
         _binding = null
     }
 }

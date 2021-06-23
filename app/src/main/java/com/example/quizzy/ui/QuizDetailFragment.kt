@@ -8,12 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.quizzy.InventoryViewModel
-import com.example.quizzy.InventoryViewModelFactory
+import com.example.quizzy.viewmodels.QuizViewModel
+import com.example.quizzy.viewmodels.InventoryViewModelFactory
 import com.example.quizzy.QuizApplication
 import com.example.quizzy.R
 import com.example.quizzy.database.Quiz
-import com.example.quizzy.database.getFormattedPrice
 import com.example.quizzy.databinding.FragmentQuizDetailBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -24,7 +23,7 @@ class QuizDetailFragment : Fragment() {
     private val navigationArgs: QuizDetailFragmentArgs by navArgs()
     lateinit var quiz: Quiz
 
-    private val viewModel: InventoryViewModel by activityViewModels {
+    private val viewModel: QuizViewModel by activityViewModels {
         InventoryViewModelFactory(
             (activity?.application as QuizApplication).database.itemDao()
         )
@@ -48,10 +47,7 @@ class QuizDetailFragment : Fragment() {
     private fun bind(quiz: Quiz) {
         binding.apply {
             quizName.text = quiz.quizName
-            quizPrice.text = quiz.getFormattedPrice()
-            quizCount.text = quiz.quantityInStock.toString()
-            sellItem.isEnabled = viewModel.isStockAvailable(quiz)
-            sellItem.setOnClickListener { viewModel.sellItem(quiz) }
+            quizDescription.text = quiz.quizDescription
             deleteItem.setOnClickListener { showConfirmationDialog() }
             editItem.setOnClickListener { editItem() }
         }
@@ -87,7 +83,7 @@ class QuizDetailFragment : Fragment() {
      * Deletes the current quiz and navigates to the list fragment.
      */
     private fun deleteItem() {
-        viewModel.deleteItem(quiz)
+        viewModel.deleteQuiz(quiz)
         findNavController().navigateUp()
     }
 
@@ -97,7 +93,7 @@ class QuizDetailFragment : Fragment() {
         // Retrieve the quiz details using the itemId.
         // Attach an observer on the database (instead of polling for changes) and only update the
         // the UI when the database actually changes.
-        viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
+        viewModel.retrieveQuiz(id).observe(this.viewLifecycleOwner) { selectedItem ->
             quiz = selectedItem
             bind(quiz)
         }

@@ -13,50 +13,28 @@
         style="@style/Widget.Quiz.Header"
         android:layout_marginStart="@dimen/margin_between_elements"
         android:text="@string/quiz"
-        app:layout_constraintEnd_toStartOf="@+id/quiz_price"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/quiz_price"
-        style="@style/Widget.Quiz.Header"
-        android:layout_below="@+id/quiz_name"
-        android:layout_marginStart="@dimen/margin_between_elements"
-        android:text="@string/price"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/item_quantity"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/quiz_name"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/item_quantity"
-        style="@style/Widget.Quiz.Header"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/margin_between_elements"
-        android:text="@string/quantity_in_stock"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/quiz_price"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider"
         style="@style/Divider"
-        android:layout_marginTop="@dimen/margin_between_elements"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_quantity" />
+        app:layout_constraintTop_toBottomOf="@+id/quiz_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 

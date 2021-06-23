@@ -4,7 +4,7 @@
     <style name="Widget.Quiz.ListItemTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_height">48dp</item>
-        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
     </style>
 
     <style name="Widget.Inventory.TextView" parent="Widget.MaterialComponents.TextView">

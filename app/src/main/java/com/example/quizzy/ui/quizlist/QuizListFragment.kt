@@ -10,12 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizzy.*
 import com.example.quizzy.databinding.FragmentQuizListBinding
+import com.example.quizzy.viewmodels.QuizViewModel
+import com.example.quizzy.viewmodels.InventoryViewModelFactory
 
 /**
  * Main fragment displaying details for all items in the database.
  */
 class QuizListFragment : Fragment() {
-    private val viewModel: InventoryViewModel by activityViewModels {
+    private val viewModel: QuizViewModel by activityViewModels {
         InventoryViewModelFactory(
             (activity?.application as QuizApplication).database.itemDao()
         )

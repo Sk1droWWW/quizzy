@@ -12,15 +12,10 @@ import java.text.NumberFormat
 data class Quiz(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+
     @ColumnInfo(name = "name")
     val quizName: String,
-    @ColumnInfo(name = "price")
-    val quizPrice: Double,
-    @ColumnInfo(name = "quantity")
-    val quantityInStock: Int,
+
+    @ColumnInfo(name = "description")
+    val quizDescription: String,
 )
-/**
- * Returns the passed in price in currency format.
- */
-fun Quiz.getFormattedPrice(): String =
-    NumberFormat.getCurrencyInstance().format(quizPrice)

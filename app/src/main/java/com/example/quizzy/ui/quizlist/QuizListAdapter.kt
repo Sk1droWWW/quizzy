@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.database.Quiz
-import com.example.quizzy.database.getFormattedPrice
 import com.example.quizzy.databinding.QuizListItemBinding
 
 /**
@@ -39,8 +38,7 @@ class QuizListAdapter(private val onItemClicked: (Quiz) -> Unit) :
 
         fun bind(quiz: Quiz) {
             binding.quizName.text = quiz.quizName
-            binding.quizPrice.text = quiz.getFormattedPrice()
-            binding.itemQuantity.text = quiz.quantityInStock.toString()
+            binding.quizDescription.text = quiz.quizDescription
         }
     }
 

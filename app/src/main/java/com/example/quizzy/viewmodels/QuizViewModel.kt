@@ -1,4 +1,4 @@
-package com.example.quizzy
+package com.example.quizzy.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -13,64 +13,46 @@ import kotlinx.coroutines.launch
  * View Model to keep a reference to the Inventory repository and an up-to-date list of all items.
  *
  */
-class InventoryViewModel(private val quizDao: QuizDao) : ViewModel() {
+class QuizViewModel(private val quizDao: QuizDao) : ViewModel() {
 
     // Cache all items form the database using LiveData.
     val allItems: LiveData<List<Quiz>> = quizDao.getItems().asLiveData()
 
-    /**
-     * Returns true if stock is available to sell, false otherwise.
-     */
-    fun isStockAvailable(quiz: Quiz): Boolean {
-        return (quiz.quantityInStock > 0)
-    }
 
     /**
      * Updates an existing Quiz in the database.
      */
-    fun updateItem(
-        itemId: Int,
-        itemName: String,
-        itemPrice: String,
-        itemCount: String
+    fun updateQuiz(
+        quizId: Int,
+        quizName: String,
+        quizDescription: String,
     ) {
-        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemPrice, itemCount)
-        updateItem(updatedItem)
+        val updatedItem = getUpdatedItemEntry(quizId, quizName, quizDescription)
+        updateQuiz(updatedItem)
     }
 
 
     /**
      * Launching a new coroutine to update an quiz in a non-blocking way
      */
-    private fun updateItem(quiz: Quiz) {
+    private fun updateQuiz(quiz: Quiz) {
         viewModelScope.launch {
             quizDao.update(quiz)
         }
     }
 
     /**
-     * Decreases the stock by one unit and updates the database.
-     */
-    fun sellItem(quiz: Quiz) {
-        if (quiz.quantityInStock > 0) {
-            // Decrease the quantity by 1
-            val newItem = quiz.copy(quantityInStock = quiz.quantityInStock - 1)
-            updateItem(newItem)
-        }
-    }
-
-    /**
      * Inserts the new Quiz into database.
      */
-    fun addNewItem(itemName: String, itemPrice: String, itemCount: String) {
-        val newItem = getNewItemEntry(itemName, itemPrice, itemCount)
-        insertItem(newItem)
+    fun addNewQuiz(quizName: String, quizDescription: String) {
+        val newItem = getNewQuizEntry(quizName, quizDescription)
+        insertQuiz(newItem)
     }
 
     /**
      * Launching a new coroutine to insert an quiz in a non-blocking way
      */
-    private fun insertItem(quiz: Quiz) {
+    private fun insertQuiz(quiz: Quiz) {
         viewModelScope.launch {
             quizDao.insert(quiz)
         }
@@ -79,7 +61,7 @@ class InventoryViewModel(private val quizDao: QuizDao) : ViewModel() {
     /**
      * Launching a new coroutine to delete an quiz in a non-blocking way
      */
-    fun deleteItem(quiz: Quiz) {
+    fun deleteQuiz(quiz: Quiz) {
         viewModelScope.launch {
             quizDao.delete(quiz)
         }
@@ -88,15 +70,15 @@ class InventoryViewModel(private val quizDao: QuizDao) : ViewModel() {
     /**
      * Retrieve an quiz from the repository.
      */
-    fun retrieveItem(id: Int): LiveData<Quiz> {
+    fun retrieveQuiz(id: Int): LiveData<Quiz> {
         return quizDao.getItem(id).asLiveData()
     }
 
     /**
      * Returns true if the EditTexts are not empty
      */
-    fun isEntryValid(itemName: String, itemPrice: String, itemCount: String): Boolean {
-        if (itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank()) {
+    fun isEntryValid(itemName: String, quizDescription: String): Boolean {
+        if (itemName.isBlank() || quizDescription.isBlank()) {
             return false
         }
         return true
@@ -106,11 +88,10 @@ class InventoryViewModel(private val quizDao: QuizDao) : ViewModel() {
      * Returns an instance of the [Quiz] entity class with the quiz info entered by the user.
      * This will be used to add a new entry to the Inventory database.
      */
-    private fun getNewItemEntry(itemName: String, itemPrice: String, itemCount: String): Quiz {
+    private fun getNewQuizEntry(quizName: String, quizDescription: String): Quiz {
         return Quiz(
-            quizName = itemName,
-            quizPrice = itemPrice.toDouble(),
-            quantityInStock = itemCount.toInt()
+            quizName = quizName,
+            quizDescription = quizDescription,
         )
     }
 
@@ -119,16 +100,14 @@ class InventoryViewModel(private val quizDao: QuizDao) : ViewModel() {
      * Returns an instance of the [Quiz] entity class with the quiz info updated by the user.
      */
     private fun getUpdatedItemEntry(
-        itemId: Int,
-        itemName: String,
-        itemPrice: String,
-        itemCount: String
+        quizId: Int,
+        quizName: String,
+        quizDescription: String,
     ): Quiz {
         return Quiz(
-            id = itemId,
-            quizName = itemName,
-            quizPrice = itemPrice.toDouble(),
-            quantityInStock = itemCount.toInt()
+            id = quizId,
+            quizName = quizName,
+            quizDescription = quizDescription,
         )
     }
 }
@@ -138,9 +117,9 @@ class InventoryViewModel(private val quizDao: QuizDao) : ViewModel() {
  */
 class InventoryViewModelFactory(private val quizDao: QuizDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(InventoryViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(QuizViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return InventoryViewModel(quizDao) as T
+            return QuizViewModel(quizDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
