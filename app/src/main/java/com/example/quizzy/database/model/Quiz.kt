@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 /**
  * Entity database class represents a single row in the database.
  */
-@Entity(tableName = "quizzes")
+@Entity(tableName = "quiz")
 data class Quiz(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "quiz_id)")
+    @ColumnInfo(name = "quiz_id")
     val id: Int = 0,
 
     @ColumnInfo(name = "name")

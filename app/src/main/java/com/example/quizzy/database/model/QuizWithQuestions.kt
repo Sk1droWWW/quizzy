@@ -3,7 +3,7 @@ package com.example.quizzy.database.model
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class QuizAndQuestions(
+data class QuizWithQuestions(
     @Embedded
     val quiz: Quiz,
 

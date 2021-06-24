@@ -1,12 +1,9 @@
 package com.example.quizzy.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
+import com.example.quizzy.database.model.QuestionWithAnswers
 import com.example.quizzy.database.model.Quiz
+import com.example.quizzy.database.model.QuizWithQuestions
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -18,8 +15,16 @@ interface QuizDao {
     @Query("SELECT * from quiz ORDER BY name ASC")
     fun getItems(): Flow<List<Quiz>>
 
-    @Query("SELECT * from quiz WHERE id = :id")
+    @Query("SELECT * from quiz WHERE `quiz_id` = :id")
     fun getItem(id: Int): Flow<Quiz>
+
+    @Transaction
+    @Query("SELECT * FROM quiz")
+    fun getQuizWithQuestions(): List<QuizWithQuestions>
+
+    @Transaction
+    @Query("SELECT * FROM question")
+    fun getQuestionWithAnswers(): List<QuestionWithAnswers>
 
     // Specify the conflict strategy as IGNORE, when the user tries to add an
     // existing Quiz into the database Room ignores the conflict.

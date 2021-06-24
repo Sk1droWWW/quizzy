@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "questions")/*,
+@Entity(tableName = "question")/*,
 foreignKeys = @ForeignKey(entity = Quiz::class,))*/
 data class Question(
     @PrimaryKey(autoGenerate = true)

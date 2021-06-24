@@ -8,8 +8,8 @@ data class QuestionWithAnswers(
     val question: Question,
 
     @Relation(
-        parentColumn = "questionId",
-        entityColumn = "questionId"
+        parentColumn = "question_id",
+        entityColumn = "question_id"
     )
     val answers: List<Answer>
 )
