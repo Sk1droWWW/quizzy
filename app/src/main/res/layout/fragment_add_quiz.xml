@@ -28,21 +28,21 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/quiz_price_label"
+            android:id="@+id/quiz_description_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
             android:hint="@string/quiz_description_req"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quiz_name_label"
-            app:prefixText="@string/currency_symbol">
+            app:layout_constraintTop_toBottomOf="@+id/quiz_name_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/quiz_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
+                android:inputType="textMultiLine"
+                android:lines="6"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quiz_price_label" />
+            app:layout_constraintTop_toBottomOf="@+id/quiz_description_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
