@@ -12,7 +12,7 @@ import com.example.quizzy.viewmodels.QuizViewModel
 import com.example.quizzy.viewmodels.InventoryViewModelFactory
 import com.example.quizzy.QuizApplication
 import com.example.quizzy.R
-import com.example.quizzy.database.Quiz
+import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.databinding.FragmentQuizDetailBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 

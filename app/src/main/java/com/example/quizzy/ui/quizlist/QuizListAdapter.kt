@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quizzy.database.Quiz
+import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.databinding.QuizListItemBinding
 
 /**

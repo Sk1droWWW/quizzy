@@ -14,7 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.quizzy.viewmodels.QuizViewModel
 import com.example.quizzy.viewmodels.InventoryViewModelFactory
 import com.example.quizzy.QuizApplication
-import com.example.quizzy.database.Quiz
+import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.databinding.FragmentAddQuizBinding
 
 /**

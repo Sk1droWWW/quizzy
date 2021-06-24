@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.quizzy.database.Quiz
+import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.database.QuizDao
 import kotlinx.coroutines.launch
 
