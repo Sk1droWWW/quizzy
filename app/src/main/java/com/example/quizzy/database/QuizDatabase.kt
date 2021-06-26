@@ -14,7 +14,7 @@ import com.example.quizzy.database.model.*
         Quiz::class,
         Question::class,
         Answer::class ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class QuizDatabase : RoomDatabase() {
