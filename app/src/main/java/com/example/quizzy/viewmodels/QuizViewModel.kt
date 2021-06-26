@@ -115,7 +115,7 @@ class QuizViewModel(private val quizDao: QuizDao) : ViewModel() {
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
-class InventoryViewModelFactory(private val quizDao: QuizDao) : ViewModelProvider.Factory {
+class QuizViewModelFactory(private val quizDao: QuizDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(QuizViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

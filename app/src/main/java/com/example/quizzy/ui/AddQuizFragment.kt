@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.quizzy.viewmodels.QuizViewModel
-import com.example.quizzy.viewmodels.InventoryViewModelFactory
+import com.example.quizzy.viewmodels.QuizViewModelFactory
 import com.example.quizzy.QuizApplication
 import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.databinding.FragmentAddQuizBinding
@@ -25,7 +25,7 @@ class AddQuizFragment : Fragment() {
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
     // to share the ViewModel across fragments.
     private val viewModel: QuizViewModel by activityViewModels {
-        InventoryViewModelFactory(
+        QuizViewModelFactory(
             (activity?.application as QuizApplication).database
                 .itemDao()
         )

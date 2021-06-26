@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.quizzy.viewmodels.QuizViewModel
-import com.example.quizzy.viewmodels.InventoryViewModelFactory
+import com.example.quizzy.viewmodels.QuizViewModelFactory
 import com.example.quizzy.QuizApplication
 import com.example.quizzy.R
 import com.example.quizzy.database.model.Quiz
@@ -24,7 +24,7 @@ class QuizDetailFragment : Fragment() {
     lateinit var quiz: Quiz
 
     private val viewModel: QuizViewModel by activityViewModels {
-        InventoryViewModelFactory(
+        QuizViewModelFactory(
             (activity?.application as QuizApplication).database.itemDao()
         )
     }

@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.quizzy.*
 import com.example.quizzy.databinding.FragmentQuizListBinding
 import com.example.quizzy.viewmodels.QuizViewModel
-import com.example.quizzy.viewmodels.InventoryViewModelFactory
+import com.example.quizzy.viewmodels.QuizViewModelFactory
 
 /**
  * Main fragment displaying details for all items in the database.
  */
 class QuizListFragment : Fragment() {
     private val viewModel: QuizViewModel by activityViewModels {
-        InventoryViewModelFactory(
+        QuizViewModelFactory(
             (activity?.application as QuizApplication).database.itemDao()
         )
     }
