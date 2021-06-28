@@ -19,4 +19,5 @@
     <string name="currency_symbol">$</string>
     <string name="edit_item">Edit Quiz</string>
     <string name="add_new_item">Add new Quiz</string>
+    <string name="start_quiz">start quiz</string>
 </resources>

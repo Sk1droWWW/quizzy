@@ -50,7 +50,16 @@ class QuizDetailFragment : Fragment() {
             quizDescription.text = quiz.quizDescription
             deleteItem.setOnClickListener { showConfirmationDialog() }
             editItem.setOnClickListener { editItem() }
+            startQuiz.setOnClickListener { startQuiz() }
         }
+    }
+
+    private fun startQuiz() {
+        val action = QuizDetailFragmentDirections.actionQuizDetailFragmentToQuestionFragment(
+            quiz.id
+        )
+
+        this.findNavController().navigate(action)
     }
 
     /**

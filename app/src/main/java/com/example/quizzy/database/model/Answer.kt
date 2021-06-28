@@ -14,7 +14,7 @@ data class Answer(
     val questionId: Int,
 
     @ColumnInfo(name = "answer_text")
-    val text: String,
+    val answerText: String,
 
     @ColumnInfo(name = "correct")
     val correct: Boolean,
