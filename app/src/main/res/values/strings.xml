@@ -20,4 +20,8 @@
     <string name="edit_item">Edit Quiz</string>
     <string name="add_new_item">Add new Quiz</string>
     <string name="start_quiz">start quiz</string>
+    <string name="add_question">Add question</string>
+    <string name="question_text_req">Enter your Question</string>
+    <string name="add_answer">Add Answer</string>
+    <string name="add_answer_text_req">Enter answer</string>
 </resources>

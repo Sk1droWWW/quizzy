@@ -10,61 +10,72 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin">
 
+        <TextView
+            android:id="@+id/question_number_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="Question 1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="id/quiz_description_label" />
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/quiz_name_label"
+            android:id="@+id/question_text_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
-            android:hint="@string/item_name_req"
+            android:hint="@string/question_text_req"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/question_number_title">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/quiz_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textAutoComplete|textCapWords"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/quiz_description_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin"
-            android:hint="@string/quiz_description_req"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quiz_name_label">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/quiz_description"
+                android:id="@+id/question_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textMultiLine"
-                android:lines="6"
+                android:lines="3"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/questions_list"
+            android:id="@+id/answers_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/add_question"
+            android:layout_marginTop="@dimen/margin"
+            app:layout_constraintBottom_toTopOf="@+id/add_answer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quiz_description_label" />
+            app:layout_constraintTop_toBottomOf="@+id/question_text_label"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/add_question"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_answer_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/add_question"
-            app:layout_constraintTop_toBottomOf="@+id/questions_list"
+            android:layout_marginTop="@dimen/margin"
+            android:hint="@string/add_answer_text_req"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/answers_list">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/answer_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textMultiLine|textCapSentences"
+                android:lines="1"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/add_answer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/add_answer"
+            app:layout_constraintTop_toBottomOf="@+id/add_answer_label"
             app:layout_constraintBottom_toTopOf="@+id/save_action"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -78,7 +89,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_question"/>
+            app:layout_constraintTop_toBottomOf="@+id/add_answer"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
