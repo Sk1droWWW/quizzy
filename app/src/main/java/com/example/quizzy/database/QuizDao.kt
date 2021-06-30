@@ -28,15 +28,21 @@ interface QuizDao {
     fun getAnswersByQuestion(id: Int): Flow<QuestionWithAnswers>*/
 
      @Query("SELECT * from answer WHERE `question_id` = :id")
-    fun getAnswersByQuestion(id: Int): Flow<List<Answer>>
+    fun getAnswersByQuestion(id: Int?): Flow<List<Answer>>
 
     @Query("SELECT * from question WHERE `quiz_id` = :id")
     fun getQuestionsByQuiz(id: Int): Flow<List<Question>>
+
+    @Query("SELECT * from question WHERE `question_id` = :id")
+    fun getQuestion(id: Int): Flow<Question>
 
     // Specify the conflict strategy as IGNORE, when the user tries to add an
     // existing Quiz into the database Room ignores the conflict.
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(quiz: Quiz)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(question: Question)
 
     @Update
     suspend fun update(quiz: Quiz)

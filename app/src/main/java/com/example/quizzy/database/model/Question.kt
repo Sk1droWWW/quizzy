@@ -10,7 +10,7 @@ foreignKeys = @ForeignKey(entity = Quiz::class,))*/
 data class Question(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "question_id")
-    var questionId: Int,
+    var questionId: Int = 0,
 
     @ColumnInfo(name = "quiz_id")
     var quizId: Int,
@@ -19,5 +19,5 @@ data class Question(
     val multipleAnswers: Boolean,*/
 
     @ColumnInfo(name = "question_text")
-    val text: String
+    val text: String? = null
 )

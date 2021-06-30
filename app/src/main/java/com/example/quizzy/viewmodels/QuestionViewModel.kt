@@ -13,12 +13,25 @@ class QuestionViewModel(private val quizDao: QuizDao) : ViewModel(){
     val allQuestionWithAnswers: LiveData<List<QuestionWithAnswers>> =
         quizDao.getQuestionWithAnswers().asLiveData()
 
+    val allAnswers: LiveData<List<Answer>> = quizDao
+        .getAnswersByQuestion(currentQuestion.value?.questionId).asLiveData()
+    lateinit var currentQuestion: LiveData<Question>
+
     /**
-     * Retrieve an question from the repository.
+     * Retrieve an questions from the repository.
      */
     fun retrieveQuestions(id: Int): LiveData<List<Question>> {
         return quizDao.getQuestionsByQuiz(id).asLiveData()
     }
+
+    /**
+     * Retrieve an question from the repository.
+     */
+    fun retrieveQuestion(questionId: Int):  LiveData<Question> {
+        currentQuestion = quizDao.getQuestion(questionId).asLiveData()
+        return currentQuestion
+    }
+
 
     /**
      * Retrieve an question from the repository.

@@ -24,4 +24,5 @@
     <string name="question_text_req">Enter your Question</string>
     <string name="add_answer">Add Answer</string>
     <string name="add_answer_text_req">Enter answer</string>
+    <string name="finish_quiz_btn_text">Finish</string>
 </resources>

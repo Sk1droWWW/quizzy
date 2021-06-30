@@ -44,10 +44,13 @@
             android:defaultValue="-1"
             app:argType="integer" />
         <action
-            android:id="@+id/action_addQuizFragment_to_itemQuizFragment"
+            android:id="@+id/action_addQuizFragment_to_quizListFragment"
             app:destination="@id/quizListFragment"
             app:popUpTo="@id/quizListFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addQuizFragment_to_addQuestionFragment"
+            app:destination="@id/addQuestionFragment" />
     </fragment>
     <fragment
         android:id="@+id/questionFragment"
@@ -57,6 +60,21 @@
 
         <argument
             android:name="quiz_id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addQuestionFragment"
+        android:name="com.example.quizzy.ui.AddQuestionFragment"
+        android:label="QuestionFragment"
+        tools:layout="@layout/fragment_add_question">
+
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="question_id"
             android:defaultValue="-1"
             app:argType="integer" />
     </fragment>

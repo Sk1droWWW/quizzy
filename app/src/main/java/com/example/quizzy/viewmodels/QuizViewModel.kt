@@ -7,10 +7,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.database.QuizDao
+import com.example.quizzy.database.model.Question
 import kotlinx.coroutines.launch
 
 /**
- * View Model to keep a reference to the Inventory repository and an up-to-date list of all items.
+ * View Model to keep a reference to the Quiz repository and an up-to-date list of all items.
  *
  */
 class QuizViewModel(private val quizDao: QuizDao) : ViewModel() {
@@ -96,7 +97,7 @@ class QuizViewModel(private val quizDao: QuizDao) : ViewModel() {
     }
 
     /**
-     * Called to update an existing entry in the Inventory database.
+     * Called to update an existing entry in the Quiz database.
      * Returns an instance of the [Quiz] entity class with the quiz info updated by the user.
      */
     private fun getUpdatedItemEntry(
@@ -109,6 +110,32 @@ class QuizViewModel(private val quizDao: QuizDao) : ViewModel() {
             quizName = quizName,
             quizDescription = quizDescription,
         )
+    }
+
+
+    /**
+     * Inserts the new Question into database.
+     */
+    fun addNewQuestion(quizId: Int) {
+        val newQuestion = getNewQuestionEntry(quizId)
+        insertQuestion(newQuestion)
+    }
+
+    /**
+     * Returns an instance of the [Question] entity class.
+     * This will be used to add a new entry to the Quiz database.
+     */
+    private fun getNewQuestionEntry(quizId: Int): Question {
+        return Question(quizId = quizId)
+    }
+
+    /**
+     * Launching a new coroutine to insert an question in a non-blocking way
+     */
+    private fun insertQuestion(question: Question) {
+        viewModelScope.launch {
+            quizDao.insert(question)
+        }
     }
 }
 

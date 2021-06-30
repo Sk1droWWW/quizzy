@@ -8,22 +8,19 @@
     android:layout_margin="8dp"
     android:descendantFocusability="blocksDescendants">
 
-    <RadioButton
-        android:id="@+id/answer_checked"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/answer_text"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/answer_checked"
+        android:background="@drawable/default_option_border_bg"
+        android:gravity="center"
+        android:padding="15dp"
+        android:textColor="#7A8089"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/answer_checked"
-        app:layout_constraintTop_toTopOf="@+id/answer_checked"
-        tools:text="lorem ipsum asdjksdfkl sadflkjsasdfadfag salkdjkdg aslkdgas als;kg alsgjaslkgj lsagjaslkgjaslg alkgja;lskgasklgjsa glasjglk;g jglaskj " />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Потому-что у мужиков есть борода" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

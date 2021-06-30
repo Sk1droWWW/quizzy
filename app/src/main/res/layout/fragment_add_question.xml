@@ -18,7 +18,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="id/quiz_description_label" />
+            app:layout_constraintBottom_toTopOf="@id/question_text_label" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/question_text_label"
@@ -45,6 +45,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
+            tools:listitem="@layout/answer_list_item"
+            tools:itemCount="5"
             app:layout_constraintBottom_toTopOf="@+id/add_answer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

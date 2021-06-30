@@ -14,8 +14,8 @@ data class Quiz(
     val id: Int = 0,
 
     @ColumnInfo(name = "name")
-    val quizName: String,
+    val quizName: String? = null,
 
     @ColumnInfo(name = "description")
-    val quizDescription: String,
+    val quizDescription: String? = null,
 )

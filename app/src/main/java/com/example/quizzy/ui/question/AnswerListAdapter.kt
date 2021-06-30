@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quizzy.database.model.Answer
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import com.example.quizzy.database.model.Quiz
 import com.example.quizzy.databinding.AnswerListItemBinding
+import com.example.quizzy.ui.quizlist.QuizListAdapter
 import kotlin.properties.Delegates
 
-class AnswerListAdapter : RecyclerView.Adapter<AnswerListAdapter.AnswerViewHolder>() {
+class AnswerListAdapter : ListAdapter<Answer, AnswerListAdapter.AnswerViewHolder>(DiffCallback) {
 
     var answers: List<Answer> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -51,7 +55,19 @@ class AnswerListAdapter : RecyclerView.Adapter<AnswerListAdapter.AnswerViewHolde
         fun bind(answer: Answer, selected: Boolean) {
             with(selected) {
                 binding.answerText.text = answer.answerText
-                binding.answerChecked.isChecked = selected
+//                binding.answerChecked.isChecked = selected
+            }
+        }
+    }
+
+    companion object {
+        private val DiffCallback = object : DiffUtil.ItemCallback<Answer>() {
+            override fun areItemsTheSame(oldAnswer: Answer, newAnswer: Answer): Boolean {
+                return oldAnswer === newAnswer
+            }
+
+            override fun areContentsTheSame(oldAnswer: Answer, newAnswer: Answer): Boolean {
+                return oldAnswer.answerText == newAnswer.answerText
             }
         }
     }
